@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.0"
+  },
+  "scripts": {
+    "build": "ncc build index.js --license licenses.txt",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.3",
+    "husky": "^9.1.7"
+  }
+}

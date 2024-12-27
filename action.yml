@@ -1,0 +1,75 @@
+name: 'New Relic Capture Build Size'
+description: 'Capture Build Size Stats To New Relic'
+branding:
+  icon: 'upload-cloud'
+  color: 'green'
+inputs:
+  analysis-file-contents:
+    description: 'Build analysis file contents -- Takes precendence over analysis-file-url when both are supplied.'
+    required: false
+  analysis-file-url:
+    description: 'Public URL to the analysis file - When supplied without the analysis-file-contents, will fetch the file contents from the URL. It will decorate all events created with a link to the uploaded asset.'
+    required: false
+  analysis-type:
+    description: 'Type of analysis file'
+    required: true
+    default: 'webpack'
+    options:
+    - 'webpack' # could add other types later if demand arises
+    - 'manual'
+  commit:
+    description: 'Commit identifier of the build - defaults to the sha of the commit that triggered the build'
+    required: false
+    default: '${{ github.sha }}'
+  event-type:
+    description: 'Type of event to be captured - defaults to BuildSize'
+    required: false
+    default: 'BuildSize'
+  file-name-filter:
+    description: 'Only include file names that include this string - defaults to include everything'
+    required: false
+  manual-analysis-file-name: 
+    description: 'Manually supply the file name of your build - Takes precendence over analysis-file-contents and analysis-file-url when supplied. Only works if analysis-type is "manual"'
+    required: false
+  manual-analysis-file-size: 
+    description: 'Manually supply the size of your build - Takes precendence over analysis-file-contents and analysis-file-url when supplied. Only works if analysis-type is "manual"'
+    required: false
+  manual-analysis-gzip-size: 
+    description: 'Manually supply the gzip size of your build - Takes precendence over analysis-file-contents and analysis-file-url when supplied. Only works if analysis-type is "manual"'
+    required: false
+  nr-account-id:
+    description: 'NR Account ID to be used to capture events'
+    required: true
+  nr-api-key:
+    description: 'NR API key to be used to capture events'
+    required: true
+  nr-env:
+    description: 'NR Environment to be used to capture events'
+    required: false
+    default: 'US'
+    options:
+    - 'staging'
+    - 'US'
+    # - 'EU' // need to confirm what the domain is for this
+  traverse:
+    description: 'When true, will traverse all subtrees and capture events for each item - defaults to false'
+    default: false
+    required: false
+  trigger:
+    description: 'Trigger of the capturing the build size - defaults to "build". Can be useful if you have differing reasons for capturing the build size across your repository.'
+    required: false
+    default: 'build'
+  user:
+    description: 'User who triggered the build - defaults to the github actor property'
+    required: false
+    default: '${{ github.actor }}'
+  version:
+    description: 'Version of the build - defaults to the github ref name'
+    required: false
+    default: '${{ github.ref_name }}'
+outputs:
+  api-response:
+    description: 'The response from NR API'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
