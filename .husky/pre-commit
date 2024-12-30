@@ -1,3 +1,7 @@
 npm i
 
 npm run build
+
+npm run third-party-updates
+
+git add .

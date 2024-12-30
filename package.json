@@ -5,9 +5,11 @@
   },
   "scripts": {
     "build": "ncc build index.js --license licenses.txt",
-    "prepare": "husky"
+    "prepare": "husky",
+    "third-party-updates": "oss third-party manifest --includeOptDeps && oss third-party notices --includeOptDeps"
   },
   "devDependencies": {
+    "@newrelic/newrelic-oss-cli": "^0.1.2",
     "@vercel/ncc": "^0.38.3",
     "husky": "^9.1.7"
   }
