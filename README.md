@@ -22,9 +22,9 @@ A GitHub Action to capture a New Relic event describing your build size metrics.
 | `manual-analysis-gzip-size` | **If `analysis-type` is `manual`** | - | Manually supply the file name of your build - Takes precendence over analysis-file-contents and analysis-file-url when supplied. Only works if analysis-type is "manual" |
 | `nr-account-id` | **Always** | - | New Relic Account ID to be used to capture events |
 | `nr-api-key` | **Always** | - | New Relic API key to be used to capture events |
-| `nr-env` | - | `US` | NR Environment to be used to capture events. Valid values are `US`, `staging`.  `EU` to be supported in the future |
+| `nr-env` | - | `US` | NR Environment to be used to capture events. Valid values are `US`.  `EU` to be supported in the future |
 | `traverse` | - | `false` | When true, will traverse all subtrees and capture events for each item. Currently only supports `webpack` analysis type. |
-| `trigger` | - | `build` | Trigger of the capturing the build size. Can be useful if you have differing reasons for capturing the build size across your repository. |
+| `trigger` | - | `github.workflow` | Trigger of the capturing the build size. Can be useful if you have differing reasons or jobs for capturing the build size across your repository. |
 | `user` | - | `github.actor` | User who triggered the build |
 | `version` | - | `github.ref_name` | Version of the build |
 
