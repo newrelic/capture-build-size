@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "Mon Dec 30 2024 14:44:16 GMT-0700 (Mountain Standard Time)",
+  "lastUpdated": "Mon Dec 30 2024 14:56:31 GMT-0700 (Mountain Standard Time)",
   "projectName": "capture-build-size",
   "projectUrl": "https://github.com/newrelic/capture-build-size/",
   "includeOptDeps": true,
@@ -52,6 +52,19 @@
       "licenseFile": "node_modules/@vercel/ncc/LICENSE",
       "licenseUrl": "https://github.com/vercel/ncc/blob/v0.38.3/LICENSE",
       "licenseTextSource": "file"
+    },
+    "eslint@9.17.0": {
+      "name": "eslint",
+      "version": "9.17.0",
+      "range": "^9.17.0",
+      "licenses": "MIT",
+      "repoUrl": "https://github.com/eslint/eslint",
+      "versionedRepoUrl": "https://github.com/eslint/eslint/tree/v9.17.0",
+      "licenseFile": "node_modules/eslint/LICENSE",
+      "licenseUrl": "https://github.com/eslint/eslint/blob/v9.17.0/LICENSE",
+      "licenseTextSource": "file",
+      "publisher": "Nicholas C. Zakas",
+      "email": "nicholas+npm@nczconsulting.com"
     },
     "husky@9.1.7": {
       "name": "husky",

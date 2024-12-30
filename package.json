@@ -5,12 +5,14 @@
   },
   "scripts": {
     "build": "ncc build index.js --license licenses.txt",
+    "lint": "eslint -c .eslintrc.js .",
     "prepare": "husky",
     "third-party-updates": "oss third-party manifest --includeOptDeps && oss third-party notices --includeOptDeps"
   },
   "devDependencies": {
     "@newrelic/newrelic-oss-cli": "^0.1.2",
     "@vercel/ncc": "^0.38.3",
+    "eslint": "^9.17.0",
     "husky": "^9.1.7"
   }
 }
