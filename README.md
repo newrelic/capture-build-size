@@ -153,3 +153,58 @@ jobs:
           user: ${{ github.actor }} # the user who raised the PR
           version: ${{ github.ref_name }} # the PR number tied to the action
 ```
+
+
+## Query Your Data
+
+  
+### Basic Query Steps
+1. In NR1, log into the account you pointed the action to report to.
+2. Select "Query your data"
+3. Run the given NRQL query
+
+### Attributes Potentially Available
+- "analysisFileUrl"
+- "analysisType"
+- "commit"
+- "entryPoint"
+- "fileName"
+- "fileSize"
+- "gzipSize"
+- "isInitialEntrypoint"
+- "timestamp"
+- "trigger"
+- "user"
+- "version"
+
+### Track Webpack Entrypoint Sizes Over Time
+This example assumes you are collecting `BuildSize` events every time your main branch changes
+```sql
+FROM BuildSize select latest(fileSize)/1000 as 'KB' where isInitialEntrypoint where version = 'main' facet fileName timeseries since 1 week ago
+```
+
+### Track Webpack Async Chunk Sizes Over Time
+This example assumes you are collecting `BuildSize` events every time your main branch changes
+```sql
+FROM BuildSize select latest(fileSize)/1000 as 'KB' where isInitialEntrypoint is not true where version = 'main' facet fileName timeseries since 1 week ago
+```
+
+### Compare Build Sizes Across PRs
+This examples assumes you are collecting `BuildSize` events every time your main branch changes as well as when a PR is created/updated.  Each PR `BuildSize` will have a `version` attribute matching its PR number.
+```sql
+FROM BuildSize select latest(fileSize)/1000 as 'KB', latest(gzipSize)/1000 as 'GZIP KB', latest(timestamp), latest(commit) as 'SHA' where fileName = <file name> facet version
+```
+
+### Evaluate deviation across PRs
+This examples assumes you are collecting `BuildSize` events every time your main branch changes as well as when a PR is created/updated.  Each PR `BuildSize` will have a `version` attribute matching its PR number.
+
+```sql
+FROM BuildSize select stddev(fileSize)/1000 as 'Stddev KB' where fileName = <file name> facet version
+```
+
+### Evaluate builds created by a user
+This examples assumes you are collecting `BuildSize` events every time your main branch changes as well as when a PR is created/updated.  Each PR `BuildSize` will have a `version` attribute matching its PR number.
+
+```sql
+FROM BuildSize select latest(fileSize)/1000 as 'KB', latest(gzipSize)/1000 as 'GZIP KB', latest(timestamp), latest(commit) as 'SHA' where fileName = <file name> and user = <user id> facet version
+```
