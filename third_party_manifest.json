@@ -1,0 +1,82 @@
+{
+  "lastUpdated": "Mon Dec 30 2024 14:56:31 GMT-0700 (Mountain Standard Time)",
+  "projectName": "capture-build-size",
+  "projectUrl": "https://github.com/newrelic/capture-build-size/",
+  "includeOptDeps": true,
+  "optionalDependencies": {},
+  "includeDev": true,
+  "dependencies": {
+    "@actions/core@1.11.1": {
+      "name": "@actions/core",
+      "version": "1.11.1",
+      "range": "^1.11.1",
+      "licenses": "MIT",
+      "repoUrl": "https://github.com/actions/toolkit",
+      "versionedRepoUrl": "https://github.com/actions/toolkit/tree/v1.11.1",
+      "licenseFile": "node_modules/@actions/core/LICENSE.md",
+      "licenseUrl": "https://github.com/actions/toolkit/blob/v1.11.1/LICENSE.md",
+      "licenseTextSource": "file"
+    },
+    "@actions/github@6.0.0": {
+      "name": "@actions/github",
+      "version": "6.0.0",
+      "range": "^6.0.0",
+      "licenses": "MIT",
+      "repoUrl": "https://github.com/actions/toolkit",
+      "versionedRepoUrl": "https://github.com/actions/toolkit/tree/v6.0.0",
+      "licenseFile": "node_modules/@actions/github/LICENSE.md",
+      "licenseUrl": "https://github.com/actions/toolkit/blob/v6.0.0/LICENSE.md",
+      "licenseTextSource": "file"
+    }
+  },
+  "devDependencies": {
+    "@newrelic/newrelic-oss-cli@0.1.2": {
+      "name": "@newrelic/newrelic-oss-cli",
+      "version": "0.1.2",
+      "range": "^0.1.2",
+      "licenses": "Apache-2.0",
+      "repoUrl": "https://github.com/newrelic/newrelic-oss-cli",
+      "versionedRepoUrl": "https://github.com/newrelic/newrelic-oss-cli/tree/v0.1.2",
+      "licenseFile": "node_modules/@newrelic/newrelic-oss-cli/LICENSE",
+      "licenseUrl": "https://github.com/newrelic/newrelic-oss-cli/blob/v0.1.2/LICENSE",
+      "licenseTextSource": "file",
+      "publisher": "New Relic"
+    },
+    "@vercel/ncc@0.38.3": {
+      "name": "@vercel/ncc",
+      "version": "0.38.3",
+      "range": "^0.38.3",
+      "licenses": "MIT",
+      "repoUrl": "https://github.com/vercel/ncc",
+      "versionedRepoUrl": "https://github.com/vercel/ncc/tree/v0.38.3",
+      "licenseFile": "node_modules/@vercel/ncc/LICENSE",
+      "licenseUrl": "https://github.com/vercel/ncc/blob/v0.38.3/LICENSE",
+      "licenseTextSource": "file"
+    },
+    "eslint@9.17.0": {
+      "name": "eslint",
+      "version": "9.17.0",
+      "range": "^9.17.0",
+      "licenses": "MIT",
+      "repoUrl": "https://github.com/eslint/eslint",
+      "versionedRepoUrl": "https://github.com/eslint/eslint/tree/v9.17.0",
+      "licenseFile": "node_modules/eslint/LICENSE",
+      "licenseUrl": "https://github.com/eslint/eslint/blob/v9.17.0/LICENSE",
+      "licenseTextSource": "file",
+      "publisher": "Nicholas C. Zakas",
+      "email": "nicholas+npm@nczconsulting.com"
+    },
+    "husky@9.1.7": {
+      "name": "husky",
+      "version": "9.1.7",
+      "range": "^9.1.7",
+      "licenses": "MIT",
+      "repoUrl": "https://github.com/typicode/husky",
+      "versionedRepoUrl": "https://github.com/typicode/husky/tree/v9.1.7",
+      "licenseFile": "node_modules/husky/LICENSE",
+      "licenseUrl": "https://github.com/typicode/husky/blob/v9.1.7/LICENSE",
+      "licenseTextSource": "file",
+      "publisher": "typicode"
+    }
+  }
+}

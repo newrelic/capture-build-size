@@ -22,9 +22,9 @@ A GitHub Action to capture a New Relic event describing your build size metrics.
 | `manual-analysis-gzip-size` | **If `analysis-type` is `manual`** | - | Manually supply the file name of your build - Takes precendence over analysis-file-contents and analysis-file-url when supplied. Only works if analysis-type is "manual" |
 | `nr-account-id` | **Always** | - | New Relic Account ID to be used to capture events |
 | `nr-api-key` | **Always** | - | New Relic API key to be used to capture events |
-| `nr-env` | - | `US` | NR Environment to be used to capture events. Valid values are `US`, `staging`.  `EU` to be supported in the future |
+| `nr-env` | - | `US` | NR Environment to be used to capture events. Valid values are `US`.  `EU` to be supported in the future |
 | `traverse` | - | `false` | When true, will traverse all subtrees and capture events for each item. Currently only supports `webpack` analysis type. |
-| `trigger` | - | `build` | Trigger of the capturing the build size. Can be useful if you have differing reasons for capturing the build size across your repository. |
+| `trigger` | - | `github.workflow` | Trigger of the capturing the build size. Can be useful if you have differing reasons or jobs for capturing the build size across your repository. |
 | `user` | - | `github.actor` | User who triggered the build |
 | `version` | - | `github.ref_name` | Version of the build |
 
@@ -152,4 +152,59 @@ jobs:
           trigger: 'PR' # Indicate the build was tied to a PR 
           user: ${{ github.actor }} # the user who raised the PR
           version: ${{ github.ref_name }} # the PR number tied to the action
+```
+
+
+## Query Your Data
+
+  
+### Basic Query Steps
+1. In NR1, log into the account you pointed the action to report to.
+2. Select "Query your data"
+3. Run the given NRQL query
+
+### Attributes Potentially Available
+- "analysisFileUrl"
+- "analysisType"
+- "commit"
+- "entryPoint"
+- "fileName"
+- "fileSize"
+- "gzipSize"
+- "isInitialEntrypoint"
+- "timestamp"
+- "trigger"
+- "user"
+- "version"
+
+### Track Webpack Entrypoint Sizes Over Time
+This example assumes you are collecting `BuildSize` events every time your main branch changes
+```sql
+FROM BuildSize select latest(fileSize)/1000 as 'KB' where isInitialEntrypoint where version = 'main' facet fileName timeseries since 1 week ago
+```
+
+### Track Webpack Async Chunk Sizes Over Time
+This example assumes you are collecting `BuildSize` events every time your main branch changes
+```sql
+FROM BuildSize select latest(fileSize)/1000 as 'KB' where isInitialEntrypoint is not true where version = 'main' facet fileName timeseries since 1 week ago
+```
+
+### Compare Build Sizes Across PRs
+This examples assumes you are collecting `BuildSize` events every time your main branch changes as well as when a PR is created/updated.  Each PR `BuildSize` will have a `version` attribute matching its PR number.
+```sql
+FROM BuildSize select latest(fileSize)/1000 as 'KB', latest(gzipSize)/1000 as 'GZIP KB', latest(timestamp), latest(commit) as 'SHA' where fileName = <file name> facet version
+```
+
+### Evaluate deviation across PRs
+This examples assumes you are collecting `BuildSize` events every time your main branch changes as well as when a PR is created/updated.  Each PR `BuildSize` will have a `version` attribute matching its PR number.
+
+```sql
+FROM BuildSize select stddev(fileSize)/1000 as 'Stddev KB' where fileName = <file name> facet version
+```
+
+### Evaluate builds created by a user
+This examples assumes you are collecting `BuildSize` events every time your main branch changes as well as when a PR is created/updated.  Each PR `BuildSize` will have a `version` attribute matching its PR number.
+
+```sql
+FROM BuildSize select latest(fileSize)/1000 as 'KB', latest(gzipSize)/1000 as 'GZIP KB', latest(timestamp), latest(commit) as 'SHA' where fileName = <file name> and user = <user id> facet version
 ```
