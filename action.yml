@@ -1,4 +1,5 @@
 name: 'New Relic Capture Build Size'
+author: 'New Relic'
 description: 'Capture Build Size Stats To New Relic'
 branding:
   icon: 'upload-cloud'
