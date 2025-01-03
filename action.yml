@@ -58,7 +58,7 @@ inputs:
   trigger:
     description: 'Trigger of the capturing the build size - defaults to the github workflow name. Can be useful if you have differing reasons or jobs for capturing the build size across your repository.'
     required: false
-    default: '${{ github.workflow }}
+    default: '${{ github.workflow }}'
   user:
     description: 'User who triggered the build - defaults to the github actor property'
     required: false

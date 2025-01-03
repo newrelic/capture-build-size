@@ -2,7 +2,7 @@
 
 # New Relic Capture Build Size 
 
-[![GitHub Marketplace version](https://img.shields.io/github/release/newrelic/capture-build-size.svg?label=Marketplace&logo=github)](https://github.com/marketplace/actions/new-relic-capture--size)
+[![GitHub Marketplace version](https://img.shields.io/github/release/newrelic/capture-build-size.svg?label=Marketplace&logo=github)](https://github.com/marketplace/actions/new-relic-capture-build-size)
 
 A GitHub Action to capture a New Relic event describing your build size metrics.
 
